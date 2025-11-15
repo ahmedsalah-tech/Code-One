@@ -7,7 +7,7 @@ Status: Ongoing
 Squad members:
 
 - Ahmed Salah
-- Hazza Aljabery
+- Hazaea Aljabery
 - Emad Yahya
 - Abdullrahman Alaryqy
 
