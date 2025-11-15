@@ -18,3 +18,4 @@ Tech stack:
 Notes:
 
 - This README is intentionally brief. More project details, setup instructions, and contribution guidelines will be added as the project progresses.
+
