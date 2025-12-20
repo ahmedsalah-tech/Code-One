@@ -1,10 +1,5 @@
-Project: Medium Clone Design - Research Report (Bachelor Level)
 
-Title: Comparative and Analytical Study of Content Publishing Platforms Similar to Medium (Arabic and International)
-Author: Hazaea Aljabery
-Date: 22 November 2025
-
-ABSTRACT:
+ABSTRACT INFORMATION:
 This study aims to analyze three Arabic platforms and three international platforms that are similar to the concept of Medium. The objective is to extract advantages and disadvantages from each platform to support the design of a Medium‑like publishing system. Verified online sources were used, including official websites and analytical articles.
 
 INTRODUCTION:
