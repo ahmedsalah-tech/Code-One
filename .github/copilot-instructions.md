@@ -55,6 +55,32 @@ This repo hosts a Laravel 12 app under `Blogging Platform/`. Use these guideline
 - **Queues**: Media conversions run via queues; the dev script starts `queue:listen` automatically.
 - **Views & Tailwind**: Blade templates under `resources/views`; Tailwind config in [Blogging Platform/tailwind.config.js](../Blogging Platform/tailwind.config.js).
 
+## Additional Guidelines for AI Agents
+
+### Big Picture Architecture
+
+- The application follows a standard MVC pattern with clear separation of concerns. The `Blogging Platform/` directory contains all major components, including models, controllers, and views.
+- Data flows primarily through the `Post`, `User`, and `Category` models, with relationships defined for efficient querying.
+
+### Developer Workflows
+
+- **Testing**: Use Pest for testing, with a focus on feature and unit tests. Ensure to seed the database before running tests to maintain consistency.
+- **Debugging**: Utilize the debug routes provided in `routes/web.php` to inspect session and authentication cache states.
+
+### Project-Specific Conventions
+
+- Use PHP 8 attributes for OpenAPI annotations in controllers, ensuring consistency across the API documentation.
+- Media handling is standardized through the `spatie/laravel-medialibrary`, with specific conventions for image uploads and access.
+
+## Roadmap & Known Initiatives
+
+See [\_features.md](../_features.md) for the full implementation roadmap. Key areas in progress:
+
+- **Dark Mode** (6 tasks, not started) - Tailwind-based theme toggle with persistence.
+- **Performance** (8 tasks, 1/7 remaining) - Lazy loading, WebP, query optimization, Lighthouse targeting 90+.
+- **Docker** (12 tasks, not started) - Multi-service compose (app, nginx, MySQL, Redis, queue-worker).
+- **Security Testing** (11 tasks, 1 complete, 1 partial) - Expand XSS, SQL injection, CSRF, auth, file upload, rate limiting tests.
+
 ## Environment: Redis (.env)
 
 - **Redis client**: Predis is used (`predis/predis` is required).
