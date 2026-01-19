@@ -3,11 +3,13 @@
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 
-uses()->group('security', 'feature');
+uses(RefreshDatabase::class)->group('security', 'feature');
 
 beforeEach(function () {
-    $this->seed();
+    Artisan::call('db:seed');
 });
 
 test('unauthorized access returns 403', function () {
@@ -50,4 +52,3 @@ test('cascade deletes work correctly', function () {
     $this->assertDatabaseMissing('claps', ['id' => $clap1->id]);
     $this->assertDatabaseMissing('claps', ['id' => $clap2->id]);
 });
-

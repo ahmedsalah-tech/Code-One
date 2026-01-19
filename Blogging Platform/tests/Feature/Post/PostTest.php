@@ -3,15 +3,21 @@
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\Conversions\Jobs\PerformConversionsJob;
+use Tests\TestCase;
 
-uses()->group('post', 'feature');
+uses(TestCase::class, RefreshDatabase::class)->group('post', 'feature');
+
+/** @var \App\Models\User $user */
+/** @var \App\Models\Category $category */
 
 beforeEach(function () {
-    $this->seed();
+    Artisan::call('db:seed');
     $this->category = Category::first();
     $this->user = User::factory()->create();
     Storage::fake('public');
@@ -125,12 +131,13 @@ test('dashboard shows posts from followed users', function () {
         'published_at' => now()->subHour(),
     ]);
 
-    visit(route('login'))
-        ->fill('email', $this->user->email)
-        ->fill('password', 'password')
-        ->press('Log in')
-        ->assertPathIs('/')
+    $this->get(route('login'));
+    $this->post(route('login'), [
+        'email' => $this->user->email,
+        'password' => 'password',
+    ]);
+
+    $this->get(route('dashboard'))
         ->assertSee($followedPost->title)
         ->assertDontSee($unfollowedPost->title);
 })->group('browser');
-

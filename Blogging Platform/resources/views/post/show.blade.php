@@ -1,8 +1,8 @@
 <x-app-layout>
     <div class="py-4">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-8">
-                <h1 class="text-2xl mb-4">{{ $post->title }}</h1>
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-8">
+                <h1 class="text-2xl mb-4 text-gray-800 dark:text-gray-200">{{ $post->title }}</h1>
 
                 <!-- User Avatar -->
                 <div class="flex gap-4">
@@ -10,20 +10,22 @@
 
                     <div>
                         <x-follow-ctr :user="$post->user" class="flex gap-2">
-                            <a href="{{ route('profile.show', $post->user) }}" class="hover:underline">
+                            <a href="{{ route('profile.show', $post->user) }}"
+                                class="hover:underline text-gray-800 dark:text-gray-200">
                                 {{ $post->user->name }}
                             </a>
-                            
+
                             @auth
                                 &middot;
-                                <button x-text="following ? 'Unfollow' : 'Follow'" 
-                                :class="following ? 'text-red-600' : 'text-emerald-600'"
-                                @click="follow()">
+                                <button x-text="following ? 'Unfollow' : 'Follow'"
+                                    :class="following ? 'text-red-600 dark:text-red-400' :
+                                        'text-emerald-600 dark:text-emerald-400'"
+                                    @click="follow()">
                                 </button>
                             @endauth
                         </x-follow-ctr>
 
-                        <div class="flex gap-2 text-sm text-gray-500">
+                        <div class="flex gap-2 text-sm text-gray-500 dark:text-gray-400">
                             {{ $post->readTime() }} min read
                             &middot;
                             {{ $post->created_at->format('M d, Y') }}
@@ -34,7 +36,7 @@
                 <!-- User Avatar -->
 
                 @if ($post->user_id === Auth::id())
-                    <div class="py-4 mt-8 border-t border-b border-gray-200">
+                    <div class="py-4 mt-8 border-t border-b border-gray-200 dark:border-gray-700">
                         <x-primary-button href="{{ route('post.edit', $post->slug) }}">
                             Edit Post
                         </x-primary-button>
@@ -53,7 +55,7 @@
                 <!-- Clap Section -->
 
                 <!-- Content Section -->
-                <div class="mt-8">
+                <div class="mt-8 text-gray-800 dark:text-gray-200">
                     <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="w-full">
 
                     <div class="mt-4">
@@ -62,7 +64,7 @@
                 </div>
 
                 <div class="mt-8">
-                    <span class="px-4 py-2 bg-gray-200 rounded-2xl">
+                    <span class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-2xl">
                         {{ $post->category->name }}
                     </span>
                 </div>
