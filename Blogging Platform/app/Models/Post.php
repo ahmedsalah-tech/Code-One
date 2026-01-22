@@ -31,13 +31,15 @@ class Post extends Model implements HasMedia
     {
         $this
             ->addMediaConversion('preview')
-            ->width(400);
+            ->width(400)
+            ->format('webp');
 
         $this
             ->addMediaConversion('large')
-            ->width(1200);
+            ->width(1200)
+            ->format('webp');
     }
-    
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('default')
@@ -47,7 +49,7 @@ class Post extends Model implements HasMedia
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
@@ -76,14 +78,14 @@ class Post extends Model implements HasMedia
 
         return max(1, $minutes);
     }
-    
-    public function imageUrl($conversionName = '')
+
+    public function imageUrl($conversionName = 'preview')
     {
         $media = $this->getFirstMedia();
         if (!$media) {
             return null;
         }
-        if ($media->hasGeneratedConversion($conversionName)) {
+        if ($conversionName && $media->hasGeneratedConversion($conversionName)) {
             return $media->getUrl($conversionName);
         }
         return $media->getUrl();

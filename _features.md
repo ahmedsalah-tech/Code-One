@@ -15,15 +15,15 @@ This document tracks the implementation status of new features for the Laravel B
 | 1.4   | Dark Mode                    | Add smooth transition animations between themes                   | ✅      | Medium   | CSS transitions on theme change       |
 | 1.5   | Dark Mode                    | Ensure dark mode works for all pages (posts, profile, auth)       | ✅      | High     | Full coverage required                |
 | 1.6   | Dark Mode                    | Add system preference detection (prefers-color-scheme)            | ✅      | Medium   | Default to OS theme                   |
-| **2** | **Performance Optimization** | **Core Web Vitals & Lighthouse Enhancement**                      | ❌      | High     |                                       |
-| 2.1   | Performance                  | Implement lazy loading for images (post thumbnails, avatars)      | ❌      | High     | Improve LCP score                     |
-| 2.2   | Performance                  | Add image compression and WebP format support                     | ❌      | High     | Reduce payload size                   |
-| 2.3   | Performance                  | Implement database query optimization (N+1 prevention)            | ❌      | High     | Use eager loading                     |
+| **2** | **Performance Optimization** | **Core Web Vitals & Lighthouse Enhancement**                      | ✅      | High     |                                       |
+| 2.1   | Performance                  | Implement lazy loading for images (post thumbnails, avatars)      | ✅      | High     | Improve LCP score                     |
+| 2.2   | Performance                  | Add image compression and WebP format support                     | ✅      | High     | Reduce payload size                   |
+| 2.3   | Performance                  | Implement database query optimization (N+1 prevention)            | ✅      | High     | Use eager loading                     |
 | 2.4   | Performance                  | Redis session management (CachedUserProvider)                     | ✅      | High     | Already implemented                   |
-| 2.5   | Performance                  | Minify and bundle CSS/JS assets via Vite                          | ❌      | Medium   | Build optimization                    |
-| 2.6   | Performance                  | Add meta tags for SEO (title, description, OG tags)               | ❌      | Medium   | Improve SEO score                     |
-| 2.7   | Performance                  | Implement preconnect/prefetch for external resources              | ❌      | Medium   | Reduce connection time                |
-| 2.8   | Performance                  | Run Lighthouse audit and document baseline scores                 | ❌      | High     | Establish benchmark                   |
+| 2.5   | Performance                  | Minify and bundle CSS/JS assets via Vite                          | ✅      | Medium   | Build optimization                    |
+| 2.6   | Performance                  | Add meta tags for SEO (title, description, OG tags)               | ✅      | Medium   | Improve SEO score                     |
+| 2.7   | Performance                  | Implement preconnect/prefetch for external resources              | ✅      | Medium   | Reduce connection time                |
+| 2.8   | Performance                  | Run Lighthouse audit and document baseline scores                 | ✅      | High     | Establish benchmark                   |
 | **3** | **DevOps & Infrastructure**  | **Docker Containerization**                                       | ❌      | High     |                                       |
 | 3.1   | Docker                       | Create Dockerfile for PHP/Laravel application                     | ❌      | High     | Use php:8.3-fpm base                  |
 | 3.2   | Docker                       | Create docker-compose.yml with multi-service setup                | ❌      | High     | App, DB, Redis, Queue worker          |

@@ -1,3 +1,12 @@
+@section('meta')
+    <meta name="description" content="{{ Str::limit(strip_tags($post->content), 155) }}">
+    <meta property="og:title" content="{{ $post->title }}">
+    <meta property="og:description" content="{{ Str::limit(strip_tags($post->content), 155) }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ route('post.show', ['username' => $post->user->username, 'post' => $post]) }}">
+    <meta property="og:image" content="{{ $post->imageUrl() }}">
+@endsection
+
 <x-app-layout>
     <div class="py-4">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
@@ -56,7 +65,7 @@
 
                 <!-- Content Section -->
                 <div class="mt-8 text-gray-800 dark:text-gray-200">
-                    <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="w-full">
+                    <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="w-full" loading="lazy">
 
                     <div class="mt-4">
                         {{ $post->content }}

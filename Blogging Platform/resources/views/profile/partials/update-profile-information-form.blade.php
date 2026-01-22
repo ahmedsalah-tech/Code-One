@@ -19,7 +19,8 @@
 
         @if ($user->imageUrl())
             <div>
-                <img src="{{ $user->imageUrl() }}" alt="{{ $user->name }}" class="rounded-full h-20 w-20">
+                <img src="{{ $user->imageUrl() }}" alt="{{ $user->name }}" class="rounded-full h-20 w-20"
+                    loading="lazy">
             </div>
         @endif
 
