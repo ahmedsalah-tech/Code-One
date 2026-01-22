@@ -6,10 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <meta name="description" content="A blogging platform built with Laravel.">
+    <meta name="keywords" content="laravel, blog, medium-clone">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ config('app.name', 'Laravel') }}">
+    <meta property="og:description" content="A blogging platform built with Laravel.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ asset('logo.svg') }}">
+
+    @yield('meta')
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
@@ -26,7 +38,7 @@
             display: none !important;
         }
     </style>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css'])
 </head>
 
 <body class="font-sans antialiased">
@@ -47,6 +59,7 @@
             {{ $slot }}
         </main>
     </div>
+    @vite(['resources/js/app.js'], 'defer')
 </body>
 
 </html>

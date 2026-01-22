@@ -60,7 +60,8 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         $this
             ->addMediaConversion('avatar')
             ->width(128)
-            ->crop(128, 128);
+            ->crop(128, 128)
+            ->format('webp');
     }
 
     public function registerMediaCollections(): void

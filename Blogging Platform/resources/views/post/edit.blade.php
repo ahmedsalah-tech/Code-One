@@ -12,7 +12,7 @@
 
                     @if ($post->imageUrl())
                         <div class="mb-8">
-                            <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="w-full">
+                            <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="w-full" loading="lazy">
                         </div>
                     @endif
 
