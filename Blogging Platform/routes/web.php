@@ -58,6 +58,7 @@ Route::middleware('auth')->get('/debug/auth-cache', function (Request $request) 
     $queries = DB::getQueryLog();
 
     return response()->json([
+        'username' => optional($user)->username,
         'user_id' => optional($user)->id,
         'session_id' => $request->session()->getId(),
         'DB_query_count' => count($queries),
