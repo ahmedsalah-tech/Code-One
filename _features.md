@@ -65,15 +65,18 @@ This document tracks the implementation status of new features for the Laravel B
 ## Implementation Notes
 
 ### 1. Dark Mode Implementation
+
 **Status**: Not Started  
 **Current State**: No dark mode support currently exists in the application.  
 **Next Steps**:
+
 - Add Tailwind dark mode class strategy in `tailwind.config.js`
 - Create toggle component with moon/sun icon in navigation
 - Implement theme switching logic in `resources/js/app.js`
 - Apply dark: variants to all components
 
 **How to Test**:
+
 ```bash
 # After implementation, manually test:
 # 1. Click toggle button and verify theme changes
@@ -85,8 +88,10 @@ This document tracks the implementation status of new features for the Laravel B
 ---
 
 ### 2. Performance Optimization
+
 **Status**: Partially Implemented ⚠️  
 **Current State**:  
+
 - ✅ Redis is configured and used for session management via `CachedUserProvider`
 - ✅ Vite is configured for asset bundling
 - ❌ No specific performance optimizations for images or queries yet
@@ -95,12 +100,14 @@ This document tracks the implementation status of new features for the Laravel B
 The application uses a custom `CachedUserProvider` (see `app/Auth/CachedUserProvider.php`) that wraps the User model authentication in Redis cache. This reduces database queries for authenticated user lookups. The cache configuration uses Redis as the store (see `config/auth.php` and `config/cache.php`). **Note**: Redis is used exclusively for session management, not for application data caching.
 
 **Next Steps**:
+
 - Run initial Lighthouse audit for baseline
 - Implement lazy loading with `loading="lazy"` attribute
 - Configure Spatie Media Library for WebP conversions
 - Add query optimization (check for N+1 queries)
 
 **How to Test**:
+
 ```bash
 # Run Lighthouse audit
 npm install -g lighthouse
@@ -115,6 +122,7 @@ php artisan optimize
 ```
 
 **Target Lighthouse Scores**:
+
 - Performance: 90+
 - Accessibility: 90+
 - Best Practices: 90+
@@ -123,9 +131,11 @@ php artisan optimize
 ---
 
 ### 3. Docker Containerization
+
 **Status**: Not Started  
 **Current State**: Application runs on local PHP/MySQL stack.  
 **Next Steps**:
+
 - Create Dockerfile with multi-stage build
 - Set up docker-compose with 5 services
 - Configure network and volumes
@@ -134,6 +144,7 @@ php artisan optimize
 **Planned Docker Architecture**:
 
 **Services**:
+
 1. **app** - PHP 8.3-FPM (Laravel application)
 2. **nginx** - Web server (reverse proxy)
 3. **mysql** - Database (MySQL 8.0)
@@ -141,9 +152,11 @@ php artisan optimize
 5. **queue-worker** - Laravel queue processor
 
 **Networks**:
+
 - `mediumclone_network` (bridge) - Internal service communication
 
 **Volumes**:
+
 - `mysql_data` - MySQL database persistence
 - `redis_data` - Redis persistence
 - `storage_app` - Laravel storage/app
@@ -151,6 +164,7 @@ php artisan optimize
 - `public_storage` - Public uploaded files
 
 **How to Use**:
+
 ```bash
 # Build and start containers
 docker-compose up -d --build
@@ -177,12 +191,15 @@ docker-compose down -v
 ---
 
 ### 4. Security Testing
+
 **Status**: Partially Implemented ⚠️  
 **Current State**: Basic security tests exist in `tests/Feature/Security/SecurityTest.php`
+
 - ✅ Unauthorized access (403) test
 - ✅ Cascade delete test
 
 **Existing Test Coverage**:
+
 ```php
 // Current tests (SecurityTest.php):
 - test('unauthorized access returns 403')
@@ -190,11 +207,13 @@ docker-compose down -v
 ```
 
 **Next Steps**:
+
 - Expand SecurityTest.php with comprehensive test cases
 - Add dedicated test files for each security concern
 - Document testing procedures
 
 **Planned Security Test Structure**:
+
 ```
 tests/Feature/Security/
 ├── SecurityTest.php (existing)
@@ -207,6 +226,7 @@ tests/Feature/Security/
 ```
 
 **How to Run Security Tests**:
+
 ```bash
 # Run all security tests
 php artisan test --group=security
@@ -222,6 +242,7 @@ php artisan test --parallel --group=security
 ```
 
 **Security Testing Checklist**:
+
 - [ ] XSS: Test HTML/JS injection in post content, comments, username
 - [ ] SQL Injection: Test malicious SQL in search, filters
 - [ ] CSRF: Verify all mutating requests require valid token
@@ -232,6 +253,7 @@ php artisan test --parallel --group=security
 - [ ] Password: Test weak password rejection
 
 **Manual Security Verification**:
+
 ```bash
 # Check CSRF protection on forms
 curl -X POST http://localhost:8000/post/create \
@@ -261,6 +283,7 @@ curl -X POST http://localhost:8000/post/create \
 ## Development Guidelines
 
 1. **Feature Branches**: Create a new branch for each major feature
+
    ```bash
    git checkout -b feature/dark-mode
    git checkout -b feature/docker-setup
@@ -278,12 +301,12 @@ curl -X POST http://localhost:8000/post/create \
 | Category    | Total  | Completed | In Progress | Not Started |
 | ----------- | ------ | --------- | ----------- | ----------- |
 | Dark Mode   | 6      | 6         | 0           | 0           |
-| Performance | 8      | 1         | 0           | 7           |
+| Performance | 8      | 8         | 0           | 0           |
 | Docker      | 12     | 0         | 0           | 12          |
-| Security    | 11     | 1         | 1           | 9           |
-| **TOTAL**   | **37** | **8**     | **1**       | **28**      |
+| Security    | 11     | 2         | 0           | 9           |
+| **TOTAL**   | **37** | **16**    | **0**       | **21**      |
 
-**Overall Completion**: 23% (8/37 complete, 1/37 partial)
+**Overall Completion**: 43% (16/37 complete)
 
 ---
 
