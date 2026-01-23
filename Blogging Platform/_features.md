@@ -27,7 +27,7 @@ This document tracks the implementation status of new features for the Laravel B
 | **3** | **DevOps & Infrastructure**  | **Docker Containerization**                                       | ❌      | High     |                                       |
 | 3.1   | Docker                       | Create Dockerfile for PHP/Laravel application                     | ❌      | High     | Use php:8.3-fpm base                  |
 | 3.2   | Docker                       | Create docker-compose.yml with multi-service setup                | ❌      | High     | App, DB, Redis, Queue worker          |
-| 3.3   | Docker                       | Configure custom Docker network for service communication         | ❌      | High     | e.g., `mediumclone_network`           |
+| 3.3   | Docker                       | Configure custom Docker network for service communication         | ❌      | High     | e.g., `bloggingplatform_network`      |
 | 3.4   | Docker                       | Set up named volumes for persistent data                          | ❌      | High     | MySQL data, uploads, logs             |
 | 3.5   | Docker                       | Add Nginx service for web server                                  | ❌      | High     | Proxy to PHP-FPM                      |
 | 3.6   | Docker                       | Configure MySQL 8.0 service with health checks                    | ❌      | High     | Database container                    |
