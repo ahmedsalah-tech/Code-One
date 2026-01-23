@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  # Application Service (PHP-FPM)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: app
+    container_name: blogging_platform_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    networks:
+      - blogging_platform_network
+
+  # Nginx Service
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: web
+    container_name: blogging_platform_nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - app
+    networks:
+      - blogging_platform_network
+
+  # MySQL Database Service
+  db:
+    image: mysql:8.0
+    container_name: blogging_platform_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - blogging_platform_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Redis Service
+  redis:
+    image: redis:alpine
+    container_name: blogging_platform_redis
+    restart: unless-stopped
+    networks:
+      - blogging_platform_network
+
+  # Queue Worker Service
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: app
+    container_name: blogging_platform_queue
+    restart: unless-stopped
+    command: php artisan queue:work
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - redis
+      - app
+    networks:
+      - blogging_platform_network
+
+networks:
+  blogging_platform_network:
+    driver: bridge
+
+  # Mailpit Service
+  mailpit:
+    image: 'axllent/mailpit:latest'
+    container_name: blogging_platform_mailpit
+    restart: unless-stopped
+    ports:
+      - "1025:1025" # SMTP port
+      - "8025:8025" # Web UI
+    networks:
+      - blogging_platform_network
+
+volumes:
+  db_data:
+    driver: local
