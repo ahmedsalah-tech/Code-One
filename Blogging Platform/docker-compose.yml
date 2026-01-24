@@ -77,10 +77,6 @@ services:
     networks:
       - blogging_platform_network
 
-networks:
-  blogging_platform_network:
-    driver: bridge
-
   # Mailpit Service
   mailpit:
     image: 'axllent/mailpit:latest'
@@ -91,6 +87,10 @@ networks:
       - "8025:8025" # Web UI
     networks:
       - blogging_platform_network
+
+networks:
+  blogging_platform_network:
+    driver: bridge
 
 volumes:
   db_data:
