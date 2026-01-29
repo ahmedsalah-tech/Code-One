@@ -19,7 +19,7 @@ class SetCacheHeaders
         $response = $next($request);
 
         if ($this->isStaticAsset($request)) {
-            $response->headers->set('Cache-Control', 'public, max-age=31536000'); // Cache for 1 year
+            $response->headers->set('Cache-Control', 'public, max-age=31536000');
         }
 
         return $response;
