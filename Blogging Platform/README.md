@@ -64,3 +64,73 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Blogging Platform - Redis Cache Resilience
+
+This Laravel blogging platform implements graceful error handling for Redis cache failures to ensure high availability.
+
+### Authentication Caching with Graceful Degradation
+
+The application uses a custom `CachedUserProvider` (located at `app/Auth/CachedUserProvider.php`) that caches authenticated user data in Redis for improved performance. When Redis becomes unavailable, the system automatically falls back to direct database queries without disrupting user experience.
+
+#### How It Works
+
+1. **Normal Operation**: User authentication data is cached in Redis (default TTL: 300 seconds)
+2. **Cache Failure**: If Redis connection fails, the system:
+   - Catches the exception automatically
+   - Falls back to querying the database directly
+   - Logs a warning for monitoring purposes
+   - Returns the user data seamlessly
+
+#### Configuration
+
+The cached user provider is configured in `config/auth.php`:
+
+```php
+'providers' => [
+    'users' => [
+        'driver' => 'cached_eloquent',
+        'model' => App\Models\User::class,
+        'cache_store' => env('AUTH_CACHE_STORE', 'redis'),
+        'cache_ttl' => env('AUTH_CACHE_TTL', 300),
+    ],
+],
+```
+
+Environment variables:
+- `AUTH_CACHE_STORE`: The cache store to use (default: `redis`)
+- `AUTH_CACHE_TTL`: Cache time-to-live in seconds (default: `300`)
+
+#### Monitoring
+
+When Redis failures occur, warnings are logged with context including:
+- User identifier
+- Error message  
+- Cache store configuration
+
+Check application logs for entries like:
+```
+Cache failure in CachedUserProvider, falling back to database
+```
+
+#### Testing
+
+Comprehensive tests are available in `tests/Feature/Cache/RedisCacheFailureTest.php` that validate:
+- Fallback to database when cache fails
+- Error logging
+- Different exception types
+- Normal cache operation
+- Edge cases (non-existent users)
+
+Run tests with:
+```bash
+php artisan test tests/Feature/Cache/RedisCacheFailureTest.php
+```
+
+### Benefits
+
+- **High Availability**: Authentication continues working even when Redis is down
+- **No User Impact**: Users experience no authentication failures
+- **Monitoring Ready**: Failures are logged for operational visibility
+- **Performance**: Benefits from caching when available, gracefully degrades when not
+
