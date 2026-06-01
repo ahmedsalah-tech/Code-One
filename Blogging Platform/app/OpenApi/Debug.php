@@ -6,7 +6,7 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Info(
- *   title="Laravel Medium Clone API",
+ *   title="Laravel BLoggin Platform API",
  *   version="1.0.0"
  * )
  *

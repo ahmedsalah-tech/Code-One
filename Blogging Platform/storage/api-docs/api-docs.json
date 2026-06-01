@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Laravel Medium Clone API",
+        "title": "Laravel Blogging Platform API",
         "description": "API documentation for the Laravel Medium Clone project",
         "contact": {
             "email": "admin@example.com"
@@ -17,9 +17,7 @@
     "paths": {
         "/login": {
             "post": {
-                "tags": [
-                    "Auth"
-                ],
+                "tags": ["Auth"],
                 "summary": "Log in a user",
                 "operationId": "42f77e072dec84b0e1094cca1228298e",
                 "requestBody": {
@@ -27,10 +25,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "email",
-                                    "password"
-                                ],
+                                "required": ["email", "password"],
                                 "properties": {
                                     "email": {
                                         "type": "string",
@@ -65,9 +60,7 @@
         },
         "/logout": {
             "post": {
-                "tags": [
-                    "Auth"
-                ],
+                "tags": ["Auth"],
                 "summary": "Log out the user",
                 "operationId": "03afb12b342c2ea43bdc1de4f39e91a8",
                 "responses": {
@@ -84,9 +77,7 @@
         },
         "/reset-password": {
             "post": {
-                "tags": [
-                    "Auth"
-                ],
+                "tags": ["Auth"],
                 "summary": "Reset the user's password",
                 "operationId": "24b1c68468bf984b8806908f211f3827",
                 "requestBody": {
@@ -138,9 +129,7 @@
         },
         "/password": {
             "put": {
-                "tags": [
-                    "Auth"
-                ],
+                "tags": ["Auth"],
                 "summary": "Update user password",
                 "operationId": "88ac00024cf86da3e4fc35d036a874d5",
                 "requestBody": {
@@ -184,9 +173,7 @@
         },
         "/forgot-password": {
             "post": {
-                "tags": [
-                    "Auth"
-                ],
+                "tags": ["Auth"],
                 "summary": "Send password reset link",
                 "operationId": "888e4aa5b202b170b9fe831da90048c6",
                 "requestBody": {
@@ -194,9 +181,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "email"
-                                ],
+                                "required": ["email"],
                                 "properties": {
                                     "email": {
                                         "type": "string",
@@ -221,9 +206,7 @@
         },
         "/register": {
             "post": {
-                "tags": [
-                    "Auth"
-                ],
+                "tags": ["Auth"],
                 "summary": "Register a new user",
                 "operationId": "573de1fed352c1205a32c4d1b9877375",
                 "requestBody": {
@@ -285,9 +268,7 @@
         },
         "/clap/{post}": {
             "post": {
-                "tags": [
-                    "Posts"
-                ],
+                "tags": ["Posts"],
                 "summary": "Clap or unclap a post",
                 "operationId": "8a1d6317e07aa26effa6c66e48c6268e",
                 "parameters": [
@@ -327,9 +308,7 @@
         },
         "/follow/{user}": {
             "post": {
-                "tags": [
-                    "Followers"
-                ],
+                "tags": ["Followers"],
                 "summary": "Follow or unfollow a user",
                 "operationId": "e6994afd4300c37a8070183e07e8fa2f",
                 "parameters": [
@@ -370,9 +349,7 @@
         },
         "/": {
             "get": {
-                "tags": [
-                    "Posts"
-                ],
+                "tags": ["Posts"],
                 "summary": "Display a listing of the posts",
                 "operationId": "107ec03de3b9342167a83dcdcfa71d68",
                 "responses": {
@@ -384,9 +361,7 @@
         },
         "/post/create": {
             "post": {
-                "tags": [
-                    "Posts"
-                ],
+                "tags": ["Posts"],
                 "summary": "Store a newly created post",
                 "operationId": "99ac18525eda9ec469e45236535ae5c1",
                 "requestBody": {
@@ -394,11 +369,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "title",
-                                    "body",
-                                    "category_id"
-                                ],
+                                "required": ["title", "body", "category_id"],
                                 "properties": {
                                     "title": {
                                         "type": "string",
@@ -435,9 +406,7 @@
         },
         "/@{username}/{slug}": {
             "get": {
-                "tags": [
-                    "Posts"
-                ],
+                "tags": ["Posts"],
                 "summary": "Display the specified post",
                 "operationId": "caf8c21b634467508597ace496ef09de",
                 "parameters": [
@@ -470,9 +439,7 @@
         },
         "/post/{post}": {
             "put": {
-                "tags": [
-                    "Posts"
-                ],
+                "tags": ["Posts"],
                 "summary": "Update the specified post",
                 "operationId": "ef3d25726bac3f85b425951d0f38b6c2",
                 "parameters": [
@@ -524,9 +491,7 @@
                 ]
             },
             "delete": {
-                "tags": [
-                    "Posts"
-                ],
+                "tags": ["Posts"],
                 "summary": "Remove the specified post",
                 "operationId": "e1a1b68b72d67133153743fb62cb6a61",
                 "parameters": [
@@ -559,9 +524,7 @@
         },
         "/category/{category}": {
             "get": {
-                "tags": [
-                    "Posts"
-                ],
+                "tags": ["Posts"],
                 "summary": "Display posts by category",
                 "operationId": "dfb1e7bc32928c7b43b4d3c63be5abe8",
                 "parameters": [
@@ -583,9 +546,7 @@
         },
         "/my-posts": {
             "get": {
-                "tags": [
-                    "Posts"
-                ],
+                "tags": ["Posts"],
                 "summary": "Display the authenticated user's posts",
                 "operationId": "ce30bb9c51bd9abe6e8c04c72dfe1d6a",
                 "responses": {
@@ -597,9 +558,7 @@
         },
         "/@{username}": {
             "get": {
-                "tags": [
-                    "Profile"
-                ],
+                "tags": ["Profile"],
                 "summary": "Display user public profile",
                 "operationId": "2e5a9fc609a3898fe72b40a4e6775739",
                 "parameters": [
