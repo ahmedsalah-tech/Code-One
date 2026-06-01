@@ -136,7 +136,7 @@ php artisan serve
 ![Dashboard Light](https://github.com/ahmedsalah-tech/Full-Fledged-Laravel-Blogging-Platform/blob/main/Screenshots/Dashboard(Light).png)
 
 ### Dashboard — Dark Mode
-![Dashboard Dark](https://github.com/ahmedsalah-tech/Full-Fledged-Laravel-Blogging-Platform/blob/main/Screenshots/Dashboard(Light).png)
+![Dashboard Dark](https://github.com/ahmedsalah-tech/Full-Fledged-Laravel-Blogging-Platform/blob/main/Screenshots/Dashboard(Dark)d.png)
 
 ### Single Post View
 ![Single Post](https://github.com/ahmedsalah-tech/Full-Fledged-Laravel-Blogging-Platform/blob/main/Screenshots/Single-Post.png)
