@@ -130,6 +130,24 @@ php artisan serve
 
 ---
 
+## 📸 Screenshots
+
+### Dashboard — Light Mode
+![Dashboard Light](https://github.com/ahmedsalah-tech/Full-Fledged-Laravel-Blogging-Platform/blob/main/Screenshots/Dashboard(Light).png)
+
+### Dashboard — Dark Mode
+![Dashboard Dark](https://github.com/ahmedsalah-tech/Full-Fledged-Laravel-Blogging-Platform/blob/main/Screenshots/Dashboard(Light).png)
+
+### Single Post View
+![Single Post](https://github.com/ahmedsalah-tech/Full-Fledged-Laravel-Blogging-Platform/blob/main/Screenshots/Single-Post.png)
+
+### API Documentation (Swagger UI)
+![API Docs](https://github.com/ahmedsalah-tech/Full-Fledged-Laravel-Blogging-Platform/blob/main/Screenshots/API-Docs.png)
+
+> 📂 View all screenshots (login, register, create post, profile, email inbox, Redis cache): [/screenshots](https://github.com/ahmedsalah-tech/Full-Fledged-Laravel-Blogging-Platform/tree/main/Screenshots)
+
+---
+
 ## DevOps & CI/CD Design
 
 The Docker setup is built with production promotion in mind:
