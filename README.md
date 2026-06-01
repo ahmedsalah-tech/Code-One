@@ -23,7 +23,6 @@ The most interesting engineering decision was building a custom `CachedUserProvi
 
 ## What Makes This Different From a Standard Blog
 
-<<<<<<< HEAD
 | Concern | Standard Tutorial App | This Project |
 |---|---|---|
 | Auth lookups | MySQL query every request | Redis cache (~1-2ms hit) |
@@ -31,21 +30,11 @@ The most interesting engineering decision was building a custom `CachedUserProvi
 | Environment | "just run `php artisan serve`" | Full Docker multi-service stack |
 | API docs | None | OpenAPI/Swagger UI |
 | Vulnerability coverage | None | XSS, SQLi, CSRF, brute-force, malicious uploads |
-=======
-| Concern                | Standard Tutorial App          | This Project                                    |
-| ---------------------- | ------------------------------ | ----------------------------------------------- |
-| Auth lookups           | MySQL query every request      | Redis cache (~1-2ms hit)                        |
-| Security testing       | None                           | 93 dedicated tests                              |
-| Environment            | "just run `php artisan serve`" | Full Docker multi-service stack                 |
-| API docs               | None                           | OpenAPI/Swagger UI                              |
-| Vulnerability coverage | None                           | XSS, SQLi, CSRF, brute-force, malicious uploads |
->>>>>>> copilot/check-error-handling-redis-caching
 
 ---
 
 ## Architecture & Stack
 
-<<<<<<< HEAD
 | Layer | Technology | Purpose |
 |---|---|---|
 | Backend | Laravel 10 (PHP 8.3) | Application logic, routing, auth |
@@ -54,16 +43,6 @@ The most interesting engineering decision was building a custom `CachedUserProvi
 | Database | MySQL 8.0 | Relational persistence |
 | Testing | Pest | Unit, Feature, and Security test suites |
 | Containerization | Docker + Nginx | Reproducible multi-service environment |
-=======
-| Layer            | Technology                  | Purpose                                     |
-| ---------------- | --------------------------- | ------------------------------------------- |
-| Backend          | Laravel 10 (PHP 8.3)        | Application logic, routing, auth            |
-| Frontend         | Blade + Tailwind CSS + Vite | Server-rendered UI with fast asset bundling |
-| Cache            | Redis                       | Auth caching, sessions, queue broker        |
-| Database         | MySQL 8.0                   | Relational persistence                      |
-| Testing          | Pest                        | Unit, Feature, and Security test suites     |
-| Containerization | Docker + Nginx              | Reproducible multi-service environment      |
->>>>>>> copilot/check-error-handling-redis-caching
 
 ### Services in Docker Compose
 `App` · `Nginx` · `MySQL` · `Redis` · `Queue Worker` · `Mailpit`
@@ -164,7 +143,6 @@ The Docker setup is built with production promotion in mind:
 
 ## Debugging & Monitoring
 
-<<<<<<< HEAD
 | Tool | Access | Purpose |
 |---|---|---|
 | Auth Cache Inspector | `GET /debug/auth-cache` | Verify Redis hits vs DB queries |
@@ -172,15 +150,6 @@ The Docker setup is built with production promotion in mind:
 | Mailpit | `http://localhost:8025` | Inspect outgoing emails locally |
 | Redis CLI | `redis-cli -n 1 KEYS "*auth:user:*"` | Monitor live cache keys |
 | Query Logger | `DB_LOG_QUERIES=true` in `.env` | Profile DB performance |
-=======
-| Tool                 | Access                               | Purpose                         |
-| -------------------- | ------------------------------------ | ------------------------------- |
-| Auth Cache Inspector | `GET /debug/auth-cache`              | Verify Redis hits vs DB queries |
-| Swagger UI           | `GET /api/documentation`             | Interactive API testing         |
-| Mailpit              | `http://localhost:8025`              | Inspect outgoing emails locally |
-| Redis CLI            | `redis-cli -n 1 KEYS "*auth:user:*"` | Monitor live cache keys         |
-| Query Logger         | `DB_LOG_QUERIES=true` in `.env`      | Profile DB performance          |
->>>>>>> copilot/check-error-handling-redis-caching
 
 ---
 
